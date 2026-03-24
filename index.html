@@ -9,6 +9,7 @@
 <body>
 
   <nav>
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle light/dark mode">☀</button>
     <a href="#about">About</a>
     <a href="#skills">Skills</a>
     <a href="#projects">Projects</a>
@@ -95,5 +96,18 @@
     <p>© 2026 test user &mdash; Built with Claude Code</p>
   </footer>
 
+  <script>
+    const toggle = document.getElementById('theme-toggle');
+    if (localStorage.getItem('theme') === 'light') {
+      document.body.classList.add('light');
+      toggle.textContent = '☾';
+    }
+    toggle.addEventListener('click', () => {
+      document.body.classList.toggle('light');
+      const isLight = document.body.classList.contains('light');
+      toggle.textContent = isLight ? '☾' : '☀';
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    });
+  </script>
 </body>
 </html>
